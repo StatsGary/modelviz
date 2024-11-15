@@ -1,7 +1,7 @@
 import pytest
 import pandas as pd
 from unittest.mock import patch
-from EDA.histogram import plot_feature_histograms  
+from modelviz.histogram import plot_feature_histograms  
 
 @pytest.fixture
 def sample_df():

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="modelviz",
-    version="0.1.0",
+    version="0.1.2",
     author="Gary Hutson",
     author_email="hutsons-hacks@engineer.com",
     description="A package for EDA and Sci-Kit Learn visualisations and utilities",
