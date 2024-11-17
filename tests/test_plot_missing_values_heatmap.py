@@ -8,6 +8,7 @@ def test_plot_with_defaults():
     df = pd.DataFrame({'A': [1, None, 3], 'B': [4, 5, None]})
     with mock.patch('matplotlib.pyplot.show') as mock_show:
         plot_missing_values_heatmap(df)
+        #Mock show assert called once
         mock_show.assert_called_once()
 
 def test_custom_title_and_xlabel():
