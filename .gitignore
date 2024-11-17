@@ -109,3 +109,4 @@ local_settings.py
 *.log
 file.txt
 build_package.sh
+token.txt
