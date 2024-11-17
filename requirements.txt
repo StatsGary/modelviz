@@ -2,4 +2,5 @@ numpy
 scikit-learn
 matplotlib
 pandas
-plotly.express
+plotly.
+seaborn
