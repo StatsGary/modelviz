@@ -64,14 +64,15 @@ def plot_feature_histograms(df, hist_bins=30, edge_col='black', hist_col='skyblu
     if not isinstance(hist_col, str) or not isinstance(edge_col, str):
         raise ValueError("`hist_col` and `edge_col` must be valid color strings.")
 
-    # Select numeric columns
+    # Ensure numeric_cols is a list
     if exclude_bin_encode:
-        numeric_cols = [col for col in df.select_dtypes(include=['float64', 'int64']).columns
+        numeric_cols = [col for col in df.select_dtypes(include='number').columns
                         if not df[col].dropna().isin([0, 1]).all()]
     else:
-        numeric_cols = df.select_dtypes(include=['float64', 'int64']).columns
+        numeric_cols = df.select_dtypes(include='number').columns.tolist()
 
-    if not numeric_cols:
+    # Check if numeric_cols is empty
+    if len(numeric_cols) == 0:
         raise ValueError("No numeric columns found to plot.")
 
     # Generate histograms

@@ -2,13 +2,13 @@ from setuptools import setup, find_packages
 
 setup(
     name="modelviz",
-    version="1.0.1",
+    version="1.0.4",
     author="Gary Hutson",
     author_email="hutsons-hacks@engineer.com",
     description="A package for EDA and Sci-Kit Learn visualisations and utilities",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/your-username/your-repo",
+    url="https://github.com/StatsGary/modelviz",
     packages=find_packages(),
     install_requires=[
         "pandas>=1.0",        # For DataFrame operations
@@ -27,6 +27,6 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.7",
+    python_requires=">=3.9",
 )
 

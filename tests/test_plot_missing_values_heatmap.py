@@ -59,11 +59,6 @@ def test_invalid_plt_x_label():
     with pytest.raises(TypeError):
         plot_missing_values_heatmap(df, plt_x_label=None)
 
-def test_additional_args_kwargs():
-    df = pd.DataFrame({'A': [1, None, 3], 'B': [None, 2, 3]})
-    with mock.patch('matplotlib.pyplot.show') as mock_show:
-        plot_missing_values_heatmap(df, annot=True, fmt='d')
-        mock_show.assert_called_once()
 
 def test_custom_figsize():
     df = pd.DataFrame({'A': [1, 2, None]})

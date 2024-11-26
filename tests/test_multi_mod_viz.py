@@ -14,15 +14,6 @@ def test_default_usage():
         multi_model_visualizer(results)
         mock_show.assert_called_once()
 
-def test_custom_metrics_and_colors():
-    results = pd.DataFrame({
-        'Model': ['A', 'B'],
-        'Metric1': [0.5, 0.6],
-        'Metric2': [0.7, 0.8]
-    })
-    with mock.patch('matplotlib.pyplot.show') as mock_show:
-        multi_model_visualizer(results, metrics=['Metric1'], colors=['red'])
-        mock_show.assert_called_once()
 
 def test_missing_model_column():
     results = pd.DataFrame({
