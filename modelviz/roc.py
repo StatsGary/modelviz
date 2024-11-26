@@ -105,3 +105,33 @@ def plot_roc_curve_with_threshold(fpr, tpr, thresholds, roc_auc, model_name=None
     plt.legend(loc='lower right')
     plt.grid(show_grid)
     plt.show()
+
+
+def plot_roc_curve_with_thresholds(fpr, tpr, thresholds, roc_auc, model_name=None, adjusted_threshold=0.5, youden_threshold=0.3):
+    
+    plt.figure(figsize=(8,6))
+    plt.plot(fpr, tpr, label=f'ROC curve (AUC = {roc_auc:.4f})', linewidth=2)
+    plt.plot([0, 1], [0, 1], 'k--', label='Random Guess')
+    
+    # Adjusted Threshold Annotation
+    idx_adj = np.argmin(np.abs(thresholds - adjusted_threshold))
+    adj_fpr = fpr[idx_adj]
+    adj_tpr = tpr[idx_adj]
+    plt.scatter(adj_fpr, adj_tpr, color='red', s=100, label=f'Adjusted Threshold = {adjusted_threshold}')
+    plt.text(adj_fpr + 0.02, adj_tpr - 0.02, f'({adj_fpr:.2f}, {adj_tpr:.2f})', color='red', fontsize=9)
+    
+    # Youden's J Threshold Annotation
+    idx_youden = np.argmin(np.abs(thresholds - youden_threshold))
+    youden_fpr = fpr[idx_youden]
+    youden_tpr = tpr[idx_youden]
+    plt.scatter(youden_fpr, youden_tpr, color='green', s=100, label=f"Youden's J Threshold = {youden_threshold:.4f}")
+    plt.text(youden_fpr + 0.02, youden_tpr - 0.02, f'({youden_fpr:.2f}, {youden_tpr:.2f})', color='green', fontsize=9)
+    
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title(f'ROC Curve for {model_name}')
+    plt.legend(loc='lower right')
+    plt.grid(True)
+    plt.show()
+
+
