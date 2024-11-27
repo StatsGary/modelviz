@@ -3,7 +3,7 @@
 
 ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 [![Python 3.9](https://img.shields.io/badge/python-3.9-blue.svg)](https://www.python.org/downloads/release/python-390/)
-[![Python 3.10](https://img.shields.io/badge/python-3.9-blue.svg)](https://www.python.org/downloads/release/python-3100/)
+[![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/)
 
 **modelviz** is a Python package designed for comprehensive and customizable data visualization and model evaluation. With modules for visualizing relationships, confusion matrices, ROC curves, data distributions, and handling missing values, `modelviz` simplifies exploratory data analysis (EDA) and model performance evaluation.
 
