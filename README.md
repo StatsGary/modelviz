@@ -1,5 +1,5 @@
 
-# 🤖🤖 modelviz - Python package to make visualizations a breeze 🤖🤖
+# 🤖modelviz - Python package to make visualizations a breeze 🤖
 <img src="https://github.com/user-attachments/assets/a0e416b5-70db-48cd-af9c-b41dc122e028" alt="image" width="300">
 
 
