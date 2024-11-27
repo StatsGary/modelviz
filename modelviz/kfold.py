@@ -32,6 +32,11 @@ def plot_kfold_cv(N=10000, K=5,
         If K is greater than N.
         If val_color or train_color are not valid matplotlib colors.
 
+    Creator
+    -------
+    Created by Gary Hutson
+    GitHub: https://github.com/StatsGary/modelviz
+
     """
     # Error handling
     if not isinstance(N, int) or not isinstance(K, int):

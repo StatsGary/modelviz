@@ -54,6 +54,11 @@ def plot_missing_values_heatmap(df, figsize=(10, 8),
     >>> import pandas as pd
     >>> df = pd.DataFrame({'A': [1, None, 3], 'B': [4, 5, None]})
     >>> plot_missing_values_heatmap(df, plt_title='My Missing Data', plt_x_label='Features')
+
+    Creator
+    -------
+    Created by Gary Hutson
+    GitHub: https://github.com/StatsGary/modelviz
     """
 
     if not isinstance(df, pd.DataFrame):

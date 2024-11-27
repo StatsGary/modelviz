@@ -45,9 +45,10 @@ def plot_feature_histograms(df, hist_bins=30, edge_col='black', hist_col='skyblu
     >>> df = pd.DataFrame(data)
     >>> plot_feature_histograms(df, library='matplotlib')
 
-    Author:
+    Creator
     -------
-    Gary Hutson
+    Created by Gary Hutson
+    GitHub: https://github.com/StatsGary/modelviz
     """
     # Validate input DataFrame
     if not isinstance(df, pd.DataFrame):

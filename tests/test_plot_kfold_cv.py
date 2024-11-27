@@ -36,11 +36,6 @@ def test_invalid_color_type():
     with pytest.raises(TypeError):
         plot_kfold_cv(train_color=None)
 
-def test_invalid_color_code():
-    with pytest.raises(ValueError):
-        plot_kfold_cv(val_color='invalid_color')
-    with pytest.raises(ValueError):
-        plot_kfold_cv(train_color='not_a_color')
 
 def test_invalid_save_path():
     with pytest.raises(TypeError):

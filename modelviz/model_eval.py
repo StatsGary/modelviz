@@ -39,6 +39,10 @@ def multi_model_visualizer(results_df,
     ...     'Recall': [0.7, 0.65, 0.68]
     ... })
     >>> multi_model_visualizer(results)
+    Creator
+    -------
+    Created by Gary Hutson
+    GitHub: https://github.com/StatsGary/modelviz
     """
     import pandas as pd
 
@@ -100,13 +104,3 @@ def multi_model_visualizer(results_df,
 
     plt.tight_layout()
     plt.show()
-
-
-# if __name__ == '__main__':
-#     import pandas as pd
-#     results = pd.DataFrame({
-#         'Model': ['Model A', 'Model B', 'Model C'],
-#         'Accuracy': [0.9, 0.85, 0.88],
-#         'Precision': [0.8, 0.75, 0.78],
-#         'Recall': [0.7, 0.65, 0.68]})
-#     multi_model_visualizer(results)

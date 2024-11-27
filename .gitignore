@@ -110,3 +110,4 @@ local_settings.py
 file.txt
 build_package.sh
 token.txt
+test.ipynb
