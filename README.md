@@ -3,11 +3,12 @@
 <img src="https://github.com/user-attachments/assets/a0e416b5-70db-48cd-af9c-b41dc122e028" alt="image" width="300">
 
 ![GitHub Actions](https://github.com/StatsGary/modelviz/actions/workflows/python-package.yml/badge.svg)
+[![PyPI version](https://badge.fury.io/py/modelviz.svg)](https://pypi.org/project/modelviz/)
 [![Python 3.9](https://img.shields.io/badge/python-3.9-blue.svg)](https://www.python.org/downloads/release/python-390/)
 [![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/release/python-3120/)
-[![PyPI version](https://badge.fury.io/py/modelviz.svg)](https://pypi.org/project/modelviz/)
+
 
 
 
