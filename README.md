@@ -1,5 +1,7 @@
 
 # 🤖🤖 modelviz - Python package to make visualizations a breeze 🤖🤖
+![image](https://github.com/user-attachments/assets/a0e416b5-70db-48cd-af9c-b41dc122e028)
+
 
 ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 [![Python 3.9](https://img.shields.io/badge/python-3.9-blue.svg)](https://www.python.org/downloads/release/python-390/)
