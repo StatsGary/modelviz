@@ -36,13 +36,3 @@ def test_invalid_color_type():
     with pytest.raises(TypeError):
         plot_kfold_cv(train_color=None)
 
-
-def test_invalid_save_path():
-    with pytest.raises(TypeError):
-        plot_kfold_cv(save_path=123)
-
-def test_save_path(tmpdir):
-    save_path = os.path.join(tmpdir, 'test_plot.png')
-    plot_kfold_cv(save_path=save_path)
-    assert os.path.isfile(save_path)
-

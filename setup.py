@@ -1,10 +1,20 @@
 from setuptools import setup, find_packages
+import re
+
+
+def get_version():
+    with open("modelviz/__init__.py", "r") as f:
+        version_line = next((line for line in f if line.startswith("__version__")), None)
+        if version_line:
+            return re.search(r"\"(.*?)\"", version_line).group(1)
+        raise RuntimeError("Version not found in modelviz/__init__.py")
+
 
 setup(
     name="modelviz",
-    version="2.0.2",
+    version=get_version(),
     author="Gary Hutson",
-    author_email="hutsons-hacks@engineer.com",
+    author_email="hutsons-hacks@outlook.com",
     description="A package for EDA and Sci-Kit Learn visualisations and utilities",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
