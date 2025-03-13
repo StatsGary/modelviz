@@ -4,3 +4,5 @@ matplotlib
 pandas
 plotly.express
 seaborn
+statsmodels
+scipy
