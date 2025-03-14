@@ -8,6 +8,9 @@ from scipy.stats import boxcox
 def analyze_and_preprocess_time_series(data: pd.DataFrame, 
                         column: str, 
                         period: int = 12,
+                        add_color:str = "green",
+                        mult_color: str = "blue",
+                        generate_plot: bool = True,
                         **decomp_args):
     """
     Fully preprocesses a time series by:
@@ -25,11 +28,9 @@ def analyze_and_preprocess_time_series(data: pd.DataFrame,
     """
     try:
         if column not in data.columns:
-            raise ValueError(f"Column '{column}' not found in DataFrame")
-        
+            raise ValueError(f"Column '{column}' not found in DataFrame")       
         if not isinstance(data.index, pd.DatetimeIndex):
             raise TypeError("The DataFrame index must be a DatetimeIndex")
-        
         if data[column].isnull().all():
             raise ValueError("The time series column contains only NaN values")
         
@@ -56,6 +57,32 @@ def analyze_and_preprocess_time_series(data: pd.DataFrame,
             except ValueError:
                 transformed_series = np.log1p(data[column])  
                 transformation_applied = "Log Transformation"
+
+
+        if generate_plot:
+            _, axes = plt.subplots(4, 2, figsize=(12, 10))
+            axes[0, 0].plot(decomposition_add.observed, label="Observed", color=add_color)
+            axes[0, 0].set_title("Additive: Observed")
+            axes[1, 0].plot(decomposition_add.trend, label="Trend", color=add_color)
+            axes[1, 0].set_title("Additive: Trend")
+            axes[2, 0].plot(decomposition_add.seasonal, label="Seasonal", color=add_color)
+            axes[2, 0].set_title("Additive: Seasonal")
+            axes[3, 0].plot(decomposition_add.resid, label="Residuals", color=add_color)
+            axes[3, 0].set_title("Additive: Residuals")
+            axes[0, 1].plot(decomposition_mul.observed, label="Observed", color=mult_color)
+            axes[0, 1].set_title("Multiplicative: Observed")
+            axes[1, 1].plot(decomposition_mul.trend, label="Trend", color=mult_color)
+            axes[1, 1].set_title("Multiplicative: Trend")
+            axes[2, 1].plot(decomposition_mul.seasonal, label="Seasonal", color=mult_color)
+            axes[2, 1].set_title("Multiplicative: Seasonal")
+            axes[3, 1].plot(decomposition_mul.resid, label="Residuals", color=mult_color)
+            axes[3, 1].set_title("Multiplicative: Residuals")
+
+            for ax in axes.flat:
+                ax.legend()
+                ax.grid(True)
+            plt.tight_layout()
+            plt.show()
 
         # Return key metrics and transformed series
         results = {
