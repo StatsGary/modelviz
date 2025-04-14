@@ -1,6 +1,7 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from matplotlib.colors import Colormap
 
 def plot_missing_values_heatmap(df, figsize=(10, 8),
                                 cmap='BuGn', cbar=True,
@@ -85,13 +86,11 @@ def plot_missing_values_heatmap(df, figsize=(10, 8),
 
     if not isinstance(plt_x_label, str):
         raise TypeError("plt_x_label must be a string.")
-
-    # Validate cmap
     if isinstance(cmap, str):
         if cmap not in plt.colormaps():
             raise ValueError(f"'{cmap}' is not a valid colormap name.")
-    elif not isinstance(cmap, plt.Colormap):
-        raise TypeError("cmap must be a string or a matplotlib.colors.Colormap instance.")
+    elif not isinstance(cmap, Colormap):
+        raise TypeError("cmap must be a valid colormap name or Colormap instance.")
 
     # Prepare parameters for sns.heatmap
     heatmap_params = {
