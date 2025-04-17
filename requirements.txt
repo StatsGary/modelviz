@@ -6,3 +6,4 @@ plotly.express
 seaborn
 statsmodels
 scipy
+prophet
