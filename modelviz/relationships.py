@@ -170,4 +170,137 @@ def plot_similarity(
 
     else:
         raise ValueError("Invalid mode. Choose 'gaussian', 'tsne', or 'pca'.")
+    
+def plot_model_probs_scatter(
+    probs_pairs,
+    labels=None,
+    palette="Set2",
+    markers=None,
+    xlabel="Model X Probability",
+    ylabel="Model Y Probability",
+    title=None,
+    x_thresh=None,
+    y_thresh=None,
+    thresh_linewidth=1.5,
+    x_thresh_color="blue",
+    y_thresh_color="green",
+    x_thresh_label=None,
+    y_thresh_label=None,
+    show_diagonal=False,
+    diagonal_color="gray",
+    diagonal_style="--",
+    alpha=0.7,
+    figsize=(6,6),
+    ax=None,
+    show=True,
+    show_legend=True,
+    legend_loc='best'
+):
+    """
+    Seaborn-style scatter plot for one or more pairs of probability arrays (e.g., model predictions).
 
+    Parameters
+    ----------
+    probs_pairs : list of tuple of np.ndarray
+        List of (probsX, probsY) pairs, each a 1D array of the same length.
+    labels : list of str, optional
+        List of labels for each pair (for the legend).
+    palette : str or list, optional
+        Seaborn color palette name or list of colors.
+    markers : list, optional
+        List of marker styles for each pair.
+    xlabel, ylabel : str, optional
+        Axis labels.
+    title : str, optional
+        Plot title.
+    x_thresh, y_thresh : float, optional
+        Draw a vertical/horizontal threshold line at this value.
+    x_thresh_color, y_thresh_color : str, optional
+        Colors for threshold lines.
+    x_thresh_label, y_thresh_label : str, optional
+        Labels for threshold lines.
+    show_diagonal : bool, optional
+        Whether to show the x=y diagonal.
+    alpha : float, optional
+        Marker transparency.
+    figsize : tuple, optional
+        Figure size.
+    ax : matplotlib.axes.Axes, optional
+        If provided, plot on these axes.
+    show : bool, optional
+        If True, call plt.show().
+    show_legend : bool, optional
+        If True, show the legend.
+    legend_loc : str, optional
+        Legend location.
+
+    Returns
+    -------
+    ax : matplotlib.axes.Axes
+        The axes object with the plot.
+
+    Example
+    -------
+    >>> import numpy as np
+    >>> from modelviz.relationships import plot_model_probs_scatter
+    >>> probs1 = np.random.rand(100)
+    >>> probs2 = 0.5 * np.random.rand(100) + 0.5 * probs1
+    >>> plot_model_probs_scatter(
+    ...     [(probs1, probs2)],
+    ...     labels=['Model A vs B'],
+    ...     x_thresh=0.5,
+    ...     y_thresh=0.5,
+    ...     show_diagonal=True
+    ... )
+    """
+    sns.set(style="whitegrid")
+    if ax is None:
+        fig, ax = plt.subplots(figsize=figsize)
+
+    n_pairs = len(probs_pairs)
+    colors = sns.color_palette(palette, n_colors=n_pairs)
+    if markers is None:
+        markers = ["o", "s", "D", "^", "P", "X", "v", "<", ">", "*"] * ((n_pairs//10)+1)
+    if labels is None:
+        labels = [f"Pair {i+1}" for i in range(n_pairs)]
+
+    for i, ((probs1, probs2), label, color, marker) in enumerate(zip(probs_pairs, labels, colors, markers)):
+        probs1 = np.asarray(probs1).flatten()
+        probs2 = np.asarray(probs2).flatten()
+        if probs1.shape != probs2.shape:
+            raise ValueError(f"Shape mismatch for pair {i}: {probs1.shape} vs {probs2.shape}")
+        sns.scatterplot(
+            x=probs1,
+            y=probs2,
+            label=label,
+            color=color,
+            marker=marker,
+            alpha=alpha,
+            ax=ax,
+            s=70,  # slightly larger points
+            edgecolor='w'
+        )
+
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    if not title:
+        title = f"{xlabel} vs {ylabel}"
+    ax.set_title(title)
+
+    if show_diagonal:
+        ax.plot([0, 1], [0, 1], diagonal_style, color=diagonal_color, label='Diagonal (Agreement)')
+    if x_thresh is not None:
+        xl = x_thresh_label if x_thresh_label else f'X Threshold: {x_thresh:.2f}'
+        ax.axvline(x=x_thresh, color=x_thresh_color, linestyle=':', linewidth=thresh_linewidth, label=xl)
+    if y_thresh is not None:
+        yl = y_thresh_label if y_thresh_label else f'Y Threshold: {y_thresh:.2f}'
+        ax.axhline(y=y_thresh, color=y_thresh_color, linestyle=':', linewidth=thresh_linewidth, label=yl)
+    if show_legend:
+        ax.legend(loc=legend_loc)
+    else:
+        if ax.get_legend() is not None:
+            ax.get_legend().remove()
+    ax.grid(True)
+    if show:
+        plt.show()
+    return ax
